@@ -21,7 +21,7 @@ As the ML Developer assigned to the HR Department, you have been asked to create
 
 ## Dataset Description
 
-### Input Dataset: [Dataset 🔗](#)
+### Input Dataset: [Dataset 🔗](https://www.kaggle.com/datasets/liujiaqi/hr-comma-sepcsv)
 
 | Column Name           | Description                                                                 |
 |-----------------------|-----------------------------------------------------------------------------|
