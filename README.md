@@ -1,92 +1,86 @@
-# Problem Scenario: Predicting Employee Turnover
+# Employee Turnover
 
-**Company:** Portobello Tech  
-**Goal:** Predict employee turnover using ML models.
+## Problem Scenario
 
-Portobello Tech is an app innovator aiming to predict employee turnover. The company regularly tracks employee information, such as:
+Portobello Tech is an app innovator who has devised an intelligent way of predicting employee turnover within the company. It periodically evaluates employees' work details, including the number of projects they worked on, average monthly working hours, time spent in the company, promotions in the last five years, and salary level.
 
-- Number of projects
-- Monthly working hours
-- Time spent at the company
-- Promotions in the last 5 years
-- Salary level
+Data from prior evaluations shows the employees’ satisfaction in the workplace. The data could be used to identify patterns in work style and their interest in continuing to work for the company.
 
-This data also includes employee satisfaction and evaluation scores. HR uses this data to identify patterns and predict which employees might leave.
+The HR Department owns the data and uses it to predict employee turnover. Employee turnover refers to the total number of workers who leave a company over time.
 
----
-
-## 🎯 Tasks for the ML Developer
-
-You have been assigned by the HR department to:
-
-1. ✅ **Perform data quality checks**
-   - Check for missing values in the dataset.
-
-2. 📊 **Understand contributing factors**
-   - Use Exploratory Data Analysis (EDA) to discover which features affect employee turnover most.
-
-3. 🔥 **Draw important plots**
-   - Heatmap of correlation matrix for numerical features
-   - Distribution plot for:
-     - `satisfaction_level`
-     - `last_evaluation`
-     - `average_montly_hours`
-   - Bar plot of `number_project` vs. `left` (who stayed vs. who left)
-
-4. 🧩 **Cluster employees who left**
-   - Use `satisfaction_level`, `last_evaluation`, and `left` columns.
-   - Apply K-Means clustering into 3 groups.
-   - Analyze and describe each cluster.
-
-5. ⚖️ **Handle class imbalance**
-   - Use **SMOTE** to upsample the minority class.
-   - Convert categorical columns using `get_dummies()`:
-     - Separate categorical and numerical columns
-     - Apply transformation
-     - Combine both again
-   - Perform stratified train-test split (80:20, `random_state=123`).
-
-6. 🤖 **Train ML models with 5-Fold Cross-Validation**
-   - Logistic Regression
-   - Random Forest Classifier
-   - Gradient Boosting Classifier
-   - Plot classification reports for each.
-
-7. 🏆 **Evaluate and choose the best model**
-   - Plot ROC Curve and calculate AUC score for each model.
-   - Generate and compare confusion matrices.
-   - Decide whether **Recall** or **Precision** matters more.
-   - Justify chosen metric.
-
-8. 💡 **Suggest retention strategies**
-   - Use the best model to predict turnover probability on test data.
-   - Categorize employees by risk zone and give strategy for each:
-
-| **Zone**         | **Score Range** | **Color** |
-|------------------|------------------|-----------|
-| Safe Zone        | Score < 20%      | 🟩 Green  |
-| Low-Risk Zone    | 20% < Score < 60%| 🟨 Yellow |
-| Medium-Risk Zone | 60% < Score < 90%| 🟧 Orange |
-| High-Risk Zone   | Score > 90%      | 🟥 Red    |
+As the ML Developer assigned to the HR Department, you have been asked to create ML programs to:
+- Perform data quality checks by checking for missing values, if any.
+- Understand what factors contributed most to employee turnover at EDA.
+- Perform clustering of employees who left based on their satisfaction and evaluation.
+- Handle the left Class Imbalance using the SMOTE technique.
+- Perform K-fold cross-validation model training and evaluate performance.
+- Identify the best model and justify the evaluation metrics used.
+- Suggest various retention strategies for targeted employees.
 
 ---
 
-## 📥 Input Dataset: [Dataset]
+## Dataset Description
 
-The following data will be used to train the model:
+### Input Dataset: [Dataset 🔗](#)
 
-| Column Name            | Description                                                   |
-|------------------------|---------------------------------------------------------------|
-| `satisfaction_level`   | Satisfaction level at the job of an employee                  |
-| `last_evaluation`      | Evaluation score (0–1) received by an employee                |
-| `number_project`       | Number of projects the employee worked on                     |
-| `average_montly_hours` | Average hours worked per month                                |
-| `time_spend_company`   | Number of years spent at the company                          |
-| `Work_accident`        | 0 = no accident, 1 = had an accident                          |
-| `left`                 | 0 = stayed, 1 = left the company                              |
-| `promotion_last_5years`| 1 = got promoted in last 5 years, 0 = no promotion            |
-| `Department`           | Department name                                               |
-| `salary`               | Salary level in USD                                           |
+| Column Name           | Description                                                                 |
+|-----------------------|-----------------------------------------------------------------------------|
+| satisfaction_level    | Satisfaction level at the job of an employee                                |
+| last_evaluation       | Rating between 0 and 1, received by an employee at his last evaluation       |
+| number_project        | The number of projects an employee is involved in                           |
+| average_monthly_hours | Average number of hours in a month spent by an employee at the office       |
+| time_spend_company    | Number of years spent in the company                                        |
+| Work_accident         | 0 - no accident during employee stay, 1 - accident during employee stay     |
+| left                  | 0 = stayed, 1 = left                                                         |
+| promotion_last_5years | Number of promotions in the last 5 years                                    |
+| Department            | Department to which an employee belongs to                                  |
+| salary                | Salary in USD                                                               |
+
+---
+
+## Tasks to Perform
+
+- Perform data quality checks by checking for missing values, if any.
+- Understand what factors contributed most to employee turnover at EDA:
+  - Draw a heatmap of the correlation matrix between all numerical features.
+  - Draw distribution plots for:
+    - Employee Satisfaction (`satisfaction_level`)
+    - Employee Evaluation (`last_evaluation`)
+    - Employee Average Monthly Hours (`average_monthly_hours`)
+  - Draw a bar plot of employee project count (by `number_project`) and `left` status.
+- Perform clustering:
+  - Use `satisfaction_level`, `last_evaluation`, and `left`.
+  - Apply K-means clustering into 3 clusters.
+  - Interpret cluster results.
+- Handle Class Imbalance using SMOTE:
+  - Convert categorical columns using `get_dummies()`.
+  - Separate categorical and numeric features.
+  - Combine and split (80/20 stratified).
+  - Apply SMOTE from `imblearn`.
+- Model Training and Cross-Validation:
+  - Train a Logistic Regression model, Random Forest, and Gradient Boosting using 5-fold CV.
+  - Plot and compare classification reports.
+- Model Evaluation:
+  - Plot ROC/AUC for each model.
+  - Generate and interpret confusion matrix.
+  - Justify metric choice: Precision or Recall?
+- Suggest Retention Strategies:
+  - Predict probability of turnover for test data.
+  - Categorize employees into:
+    - **Green Zone** (< 20%)
+    - **Yellow Zone** (20%–60%)
+    - **Orange Zone** (60%–90%)
+    - **Red Zone** (> 90%)
+  - Recommend strategies for each group.
+
+---
+
+## Submission Instructions
+
+- Preferred format: a **.pdf** of your Jupyter Notebook (with all output shown).
+  - Save it from the menu: `File → Save and Export Notebook As → PDF`.
+- Alternate format: submit the **.py** file + a separate output file.
+- Submit via the "Start Assignment" button, drag file(s), and click Submit.
 
 ---
 
