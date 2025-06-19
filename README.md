@@ -75,12 +75,3 @@ As the ML Developer assigned to the HR Department, you have been asked to create
 
 ---
 
-## Submission Instructions
-
-- Preferred format: a **.pdf** of your Jupyter Notebook (with all output shown).
-  - Save it from the menu: `File → Save and Export Notebook As → PDF`.
-- Alternate format: submit the **.py** file + a separate output file.
-- Submit via the "Start Assignment" button, drag file(s), and click Submit.
-
----
-
